@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar {{Contacto}}</title>
+    {% load static %}
+    <!-- Bootstrap -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <ul>
+        <l1><a href='/'>{{ Menu}}</a></l1>
+        <l1><a href='/acerca'>{{ Acerca }}</a></l1>
+        <l1><a href='/listarcontacto'>{{ Contacto }}</a></l1>
+
+    </ul>
+    <h1>Listado de {{Contacto}}s</h1>
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Mail</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <body>
+            {% for contacto in contactos %}
+            <tr>
+                <td>{{ contacto.id }}</td>
+                <td>{{ contacto.nombre }}</td>
+                <td>{{ contacto.telefono }}</td>
+                <td>{{ contacto.mail }}</td>
+                <td>
+                    <ul>
+                        <l1><a class="btn btn-primary" href="{% url 'contacto' %}">Ingresar</a></l1>
+                        <l1><a class="btn btn-primary" href="{% url 'editarcontacto' contacto.id %}">Modifcar</a></l1>
+                        <l1><a class="btn btn-primary" href="{% url 'eliminarcontacto' contacto.id %}">Eliminar</a></l1>
+
+                    </ul>
+
+                </td>
+
+            </tr>
+            {% endfor %}
+        </body>
+
+    </table>
+</body>
+
+</html>
